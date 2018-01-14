@@ -77,7 +77,6 @@ namespace FEM.FemGrid
                     j = m * GlobalData.nH;
                     m++;
                 }
-              //  El[i - 1].number = i;
             }
             m = 2;
             for (int i = 1, j = GlobalData.nH + 1; i <= GlobalData.ne; i++, j++)
@@ -292,7 +291,7 @@ namespace FEM.FemGrid
             //{
             for (int j = 0; j < GlobalData.ne; j++) //petla po elementach
             {
-                for(int i=0;i<4;i++)
+                for (int i=0;i<4;i++)
                 {
                     for(int s=0;s<4;s++)
                     {
@@ -304,7 +303,7 @@ namespace FEM.FemGrid
                     }
                     PL[i] = 0;
                     Ct[i] = 0;
-                    t0[i] = 0;
+                  //  t0[i] = 0;
                 }
                 
                 p[0,0] = Nd[El[j].IdTab[0] - 1].X;
@@ -323,7 +322,10 @@ namespace FEM.FemGrid
 
                 for (int k = 0; k < 4; k++) //pętla po 4 punktach całkowania
                 {
-
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Ct[i] = 0;
+                    }
                     result = JakobianList[j*4+k];
                     detJ[j] = result[0,0] * result[1,1] - result[0,1] * result[1,0];
                     H1 = calculate_H1_matrix(result, detJ[j], universalElement, k);
@@ -340,14 +342,14 @@ namespace FEM.FemGrid
                     {
                         for (int z = 0; z < 4; z++)
                         {
-                            Ct[i] = C[i,z] * t0[z];
+                            Ct[i] += C[i,z] * t0[z];
                         }
                     }
 
                     PL = vectorPlusVector(PL, Ct, 4);// P z daszkiem
 
                     HL = matrixPlusMatrix(HL, H1, 4);
-                    CL = matrixPlusMatrix(CL, C, 4);
+                   // CL = matrixPlusMatrix(CL, C, 4);
                    HL = matrixPlusMatrix(HL, C, 4);//H z daszkiem
 
                 }
@@ -454,7 +456,7 @@ namespace FEM.FemGrid
                     H2 = matrixPlusMatrix(H2, tempH1, 4);
                     tempH2 = calculate_H2_matrix(universalElement.IntegrationPoints2[7,0], universalElement.IntegrationPoints2[7,1], GlobalData.L2);
                     H2 = matrixPlusMatrix(H2, tempH1, 4);
-                   HL = matrixPlusMatrix(HL, H2, 4);
+                    HL = matrixPlusMatrix(HL, H2, 4);
                     tempP1 = calculate_P_vector(universalElement.IntegrationPoints2[6,0], universalElement.IntegrationPoints2[6,1], GlobalData.L2);
                     P = vectorPlusVector(P, tempP1, 4);
                     tempP2 = calculate_P_vector(universalElement.IntegrationPoints2[7,0], universalElement.IntegrationPoints2[7,1], GlobalData.L2);
@@ -488,7 +490,7 @@ namespace FEM.FemGrid
             }
             for (int k = 0; k < 16; k++)
             {
-                GaussMatrix[k,16] = -PG[k];
+                GaussMatrix[k,16] = PG[k];
             }
 
             gauss(16, GaussMatrix, t1);
