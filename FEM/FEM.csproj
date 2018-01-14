@@ -42,8 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FemGrid\Element.cs" />
+    <Compile Include="FemGrid\GlobalData.cs" />
+    <Compile Include="FemGrid\Grid.cs" />
+    <Compile Include="FemGrid\Node.cs" />
+    <Compile Include="IntegralCounting\CofficientsProvider.cs" />
+    <Compile Include="IntegralCounting\Integral.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UniversalElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
