@@ -19,7 +19,7 @@ namespace FEM
            Console.WriteLine("Fem grid");
            var grid = new Grid();
            grid.FillFemGrid();
-            grid.commuteEveryThing();
+            grid.CalculateEveryThing();
 
            // var universalElement = new UniversalElement();
             //double[,] pointTab = new Double[4, 2]

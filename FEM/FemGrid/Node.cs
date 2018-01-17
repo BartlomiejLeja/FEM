@@ -18,6 +18,6 @@
         public double X { get=>_x; set=>_x=value; }
         public double Y { get=>_y; set=>_y=value; }
         public bool Status { get=>_status; set=>_status=value; }//true boundary conditions, false no boundary conditions
-       public double Temp { get => _temp; set => _temp = 100; }
+       public double Temp { get => _temp; set => _temp = value; }
     }
 }

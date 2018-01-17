@@ -17,9 +17,5 @@
             IdTab[3] = Id4;
         }
 
-        public void GenerateHArray()
-        {
-
-        }
     }
 }
